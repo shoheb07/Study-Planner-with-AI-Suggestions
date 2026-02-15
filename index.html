@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Study Planner AI</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<h1>Study Planner with AI Suggestions</h1>
+
+<form id="form">
+    <input name="subject" placeholder="Subject" required>
+    <input name="topic" placeholder="Topic" required>
+    <input type="date" name="exam_date" required>
+
+    <select name="difficulty">
+        <option value="1">Easy</option>
+        <option value="5">Medium</option>
+        <option value="10">Hard</option>
+    </select>
+
+    <button>Add</button>
+</form>
+
+<h2>AI Suggested Priority Order</h2>
+
+<table>
+<tr>
+<th>Subject</th>
+<th>Topic</th>
+<th>Exam Date</th>
+<th>Difficulty</th>
+<th>Priority</th>
+<th>Status</th>
+</tr>
+
+{% for topic in topics %}
+<tr>
+<td>{{topic.subject}}</td>
+<td>{{topic.topic}}</td>
+<td>{{topic.exam_date}}</td>
+<td>{{topic.difficulty}}</td>
+<td>{{topic.priority}}</td>
+
+<td>
+{% if topic.completed == 0 %}
+<button onclick="complete({{topic.id}})">Complete</button>
+{% else %}
+Done
+{% endif %}
+</td>
+
+</tr>
+{% endfor %}
+
+</table>
+
+<script src="/static/script.js"></script>
+
+</body>
+</html>
